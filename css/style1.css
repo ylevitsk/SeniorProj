@@ -1,0 +1,57 @@
+﻿body
+{
+    background-color:blueviolet;
+}
+#title{
+    text-align:center;
+    font-style:oblique;
+    font-size:30px;  
+}
+.hide {
+	display:none;
+}
+
+#code{
+   max-width:450px;
+   max-height:450px;
+   min-height:450px;
+   min-width: 450px;
+   margin-left: 50px;
+}
+#response{
+    max-width: 450px;
+    max-height:450px;
+    min-height:450px;
+    min-width: 450px;
+    float:right;
+    margin-right: 100px;
+}
+#compile{
+    margin-left: 235px;
+}
+
+#codeContainer {
+   float:left;
+}
+#paramContainer {
+    min-width:200px;
+	max-width:200px;
+    max-height:350px;
+    min-height:350px;
+    margin-left:40px;
+    float:left;
+}
+
+#paramHeader {
+	position:relative;
+	border-bottom:1px solid #ccc;
+}
+
+#paramHeader h2 {
+	justify-content:flex-end;
+}
+
+#param {
+	margin-top:20px;
+    float:right;
+}
