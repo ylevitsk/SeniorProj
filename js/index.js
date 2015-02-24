@@ -1,4 +1,5 @@
 // JavaScript source code
+version = 0;
 function compile() {
     document.getElementById("eval").disabled = false;
     document.getElementById("start").disabled = false;
@@ -11,6 +12,7 @@ function compile() {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("response").innerHTML = xmlhttp.responseText;
+                version++;
                 params();
             }
         }
@@ -53,7 +55,7 @@ function params() {
             }
         }
     }
-    txtFile.open("GET", "params.py", true);
+    txtFile.open("GET", "params.py?version=" + version, true);
     txtFile.send();
 }
 function eval() {
@@ -87,7 +89,7 @@ function start() {
 function nextLine() {
     inspect();
 }
-
+var versionLine = 0;
 function inspect() {
     var str = document.getElementById("code").value;
     if (str.length == 0) {
@@ -98,7 +100,9 @@ function inspect() {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 document.getElementById("response").innerHTML = xmlhttp.responseText;
+                versionLine++;
                 selectTextareaLine();
+                
             }
         }
         var allVals = [];
@@ -121,30 +125,32 @@ function selectTextareaLine() {
     txtFile.onreadystatechange = function () {
         if (txtFile.readyState == 4 && txtFile.status == 200) {
             allText = txtFile.responseText;
+            allText = allText.split(" ").join("");
 
-            var tarea = document.getElementById("code");
-            var lines = tarea.value.split("\n");
-
-            if (lineNum < lines.length) {
+            if (allText.localeCompare("___return___") === 0) {
+                document.getElementById("next").disabled = true;
+                del("script.txt");
+                del("line.txt");
+                del("out.txt");
+            }
+            else {
+                var tarea = document.getElementById("code");
+                var lines = tarea.value.split("\n");
 
                 // calculate start/end
                 var startPos = 0, endPos = tarea.value.length;
                 for (var x = 0; x < lines.length; x++) {
-                    if (allText.localeCompare(lines[x])==0) { //if (x == lineNum)
+                    var temp = lines[x].split(" ").join("");
+                    if (allText.localeCompare(temp) == 0) { //if (x == lineNum)
                         break;
                     }
                     startPos += (lines[x].length + 1);
-
                 }
 
-                var endPos = lines[lineNum].length + startPos;
-                if (lineNum >= lines.length - 1) {
-                    document.getElementById("next").disabled = true;
-                }
+                var endPos = lines[x].length + startPos;
 
                 // do selection
                 // Chrome / Firefox
-
                 if (typeof (tarea.selectionStart) != "undefined") {
                     tarea.focus();
                     tarea.selectionStart = startPos;
@@ -165,14 +171,23 @@ function selectTextareaLine() {
                     lineNum++;
                     return true;
                 }
+                return false;
             }
-            if (lineNum >= lines.length - 1) {
-                document.getElementById("next").disabled = true;
-            }
-            return false;
-            
         }
     }
-    txtFile.open("GET", "line.txt", true);
+    txtFile.open("GET", "line.txt?version=" +versionLine, true);
     txtFile.send();
+}
+
+function del(file_name){
+    $.ajax({
+        url: 'delete.php',
+        data: { 'file': file_name },
+        success: function (response) {
+            // do something
+        },
+        error: function () {
+            // do something
+        }
+    });
 }

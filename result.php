@@ -4,6 +4,7 @@ $q = str_replace("\n", "\r\n", $q);
 $result = "Errors in code";    
 
 if($q != ""){
+    unlink("vars.py");
     $code = fopen("code.py", "w");
     fwrite($code, $q);
     fclose($code);

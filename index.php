@@ -3,6 +3,7 @@
     <title>Code Walkthrough</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
     <link href="css/style1.css" rel=" stylesheet" type="text/css"/>
+    <meta http-equiv="Cache-control" content="no-cache">
 </head>
 <body>
    <p id="title">Python Code Walk-Through</p>

@@ -20,7 +20,10 @@ if($q != ""){
            fclose($code);
            fclose($params);
            unlink("code.py");
-           echo "return: " . $return_val[0];
+           if($return_code == 0)
+              echo "return: " . $return_val[0];
+           else
+               echo $result;
        }
     }
     else{
