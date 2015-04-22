@@ -7,7 +7,6 @@ $result = "Errors in code";
 $str = "python code.py ";
 $str2 = "python -m pdb code.py ";
 
-$echo = "helloo";
 if ($l == "0"){
     unlink("script.txt");
     $script = fopen("script.txt", "a");
@@ -15,6 +14,7 @@ if ($l == "0"){
     fwrite($script, "s\r\n");
     fwrite($script, "s\r\n");
     fwrite($script, "s\r\n");
+    //fwrite($script, "s\r\n");
     fwrite($script, "vars()\r\n");
     fclose($script);
 }
@@ -53,7 +53,14 @@ if($q != ""){
                $linetxt = fopen("line.txt", "w");
                fwrite($linetxt, $strline);
                fclose($linetxt);
-           
+                
+               $lineNum = fopen("lineNum.txt", "w");
+               $strline = $arrline[count($arrline) - 5];
+               $arrline2 = explode("(", $strline);
+               $strNum = $arrline2[4];
+               fwrite($lineNum, $strNum);
+               fclose($lineNum);
+               
                $vars = fopen("vars.py", "a");
                if(strcmp($arrline[count($arrline)- 6], "--Return--") === 0){
                   //vars

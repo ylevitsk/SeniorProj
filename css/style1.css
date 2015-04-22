@@ -17,6 +17,7 @@
    min-height:450px;
    min-width: 450px;
    margin-left: 50px;
+   font-size: 20px;
 }
 #response{
     max-width: 450px;
@@ -27,7 +28,7 @@
     margin-right: 100px;
 }
 #compile{
-    margin-left: 235px;
+    margin-left: 135px;
 }
 
 #codeContainer {
@@ -54,4 +55,40 @@
 #param {
 	margin-top:20px;
     float:right;
+}
+
+#stateContainer {
+    max-width: 450px;
+    max-height:450px;
+    min-height:450px;
+    min-width: 450px;
+    float:right;
+    margin-right: 200px;
+}
+
+#stateHeader {
+	position:relative;
+	border-bottom:1px solid #ccc;
+}
+
+#stateHeader h2 {
+	justify-content:flex-end;
+}
+
+#states {
+	margin-top:20px;
+    float:right;
+    }
+#st{
+    background-color:white;
+    border:2px solid black;
+}
+.outter{
+    width:600px;
+    display:inline-flex;
+    overflow-y:auto
+}
+.inner{
+    min-width:50px;
+    margin:auto 5px;
 }

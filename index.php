@@ -9,6 +9,7 @@
    <p id="title">Python Code Walk-Through</p>
     <br />
     <button id="compile" onClick ="compile()" value="Submit">Compile</button> 
+    <button id="state" onClick ="state()" value="State" disabled>State</button> 
     <button id="eval" onClick ="eval()" value="Evaluate" disabled>Evaluate</button> 
     <button id="start" onclick ="start()" disabled>Start</button>
     <button id="next" onclick ="nextLine()" disabled>Next Step</button>
@@ -23,8 +24,11 @@
                     <h2>Parameters</h2>
                 </div>
                 <div id="params"></div>
-             </div>
-             <textarea readonly id="response"></textarea>
+            </div>
+            <div id="stateContainer" class ="hide">
+                <div id="states"></div>
+            </div>
+            <textarea readonly id="response"></textarea>
          </div> 
     </div>
     <br />

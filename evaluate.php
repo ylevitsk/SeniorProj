@@ -7,7 +7,7 @@ $str = "python code.py ";
 
 if($q != ""){
     $code = fopen("code.py", "a");
-    $params = fopen("params.py", "r");
+    $params = fopen("params.txt", "r");
     if($params && $code){
        if(($line = fgets($params)) !==false){
            $arr = explode("\r\n", $line);
